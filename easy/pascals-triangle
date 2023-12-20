@@ -1,0 +1,28 @@
+class Solution {
+
+    /**
+     * @param Integer $numRows
+     * @return Integer[][]
+     */
+    function generate($numRows) {
+        $result_arr[] = [1];
+        $this->recursivePush(1, $numRows, $result_arr);
+        return $result_arr;
+    }
+
+    function recursivePush($n, $numRows, &$result_arr) {
+        if ($n > ($numRows - 1)) {
+            return;
+        } else {
+            for ($j = 0; $j <= $n; $j++) {
+                if (isset($result_arr[$n - 1][$j - 1]) && isset($result_arr[$n - 1][$j])) {
+                    $result_arr[$n][$j] =
+                        $result_arr[$n - 1][$j - 1] + $result_arr[$n - 1][$j];
+                } else {
+                    $result_arr[$n][$j] = 1;
+                }
+            }
+            $this->recursivePush($n + 1, $numRows, $result_arr);
+        }
+    }
+}

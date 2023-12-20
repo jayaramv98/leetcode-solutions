@@ -1,0 +1,34 @@
+class Solution {
+
+    /**
+     * @param Integer[][] $image
+     * @param Integer $sr
+     * @param Integer $sc
+     * @param Integer $color
+     * @return Integer[][]
+     */
+    function floodFill($image, $sr, $sc, $color) {
+        if ($image[$sr][$sc] == $color) {
+            return $image;
+        } else {
+            $maxRow = count($image) - 1;
+            $maxCol = count($image[0]) - 1;
+            $target_color = $image[$sr][$sc];
+            $this->recursiveFloodFill($image, $sr, $sc, $target_color, $color, $maxRow, $maxCol);
+            return $image;
+        }
+    }
+
+    function recursiveFloodFill(&$image, $row, $col, $target_color, $color, $maxRow, $maxCol) {
+        if ($row < 0 || $row > $maxRow || $col < 0 || $col > $maxCol || $image[$row][$col] != $target_color) {
+            return;
+        } else {
+            $image[$row][$col] = $color;
+        }
+
+        $this->recursiveFloodFill($image, $row - 1, $col, $target_color, $color, $maxRow, $maxCol);
+        $this->recursiveFloodFill($image, $row + 1, $col, $target_color, $color, $maxRow, $maxCol);
+        $this->recursiveFloodFill($image, $row, $col - 1, $target_color, $color, $maxRow, $maxCol);
+        $this->recursiveFloodFill($image, $row, $col + 1, $target_color, $color, $maxRow, $maxCol);
+    }
+}

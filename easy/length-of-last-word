@@ -1,0 +1,21 @@
+class Solution {
+
+    /**
+     * @param String $s
+     * @return Integer
+     */
+    function lengthOfLastWord($s) {
+        $str_len = strlen($s);
+        $temp_str = '';    
+        for ($i = $str_len - 1; $i >= 0; $i--) {
+            if ($s[$i] != ' ') {
+                $temp_str .= $s[$i];
+            } else if ($s[$i] == ' ' && $temp_str == '') {
+                // do nothing
+            } else if ($s[$i] == ' ' && $temp_str != '') {
+                break;
+            }
+        }
+        return strlen($temp_str);
+    }
+}

@@ -1,0 +1,36 @@
+class Solution {
+
+    /**
+     * @param Integer[] $digits
+     * @return Integer[]
+     */
+    function plusOne($digits) {
+        if (count($digits) == 1) {
+            if ($digits[0] == 9) {
+                $digits = [1, 0];
+            } else {
+                $digits[0] += 1;
+            }
+        } else {
+            $nineCount = 0;
+            for ($i = count($digits) - 1; $i >= 0; $i--) {
+                if ($digits[$i] == 9) {
+                    $nineCount++;
+                    $digits[$i] = 0;
+                } else {
+                    if ($i == count($digits) - 1 || 
+                    ($nineCount > 0 && $i == (count($digits) - 1 - $nineCount))) {
+                        $digits[$i] += 1;
+                        $nineCount = 0;
+                        break;
+                    }
+                }
+            }
+
+            if ($nineCount > 0) {
+                array_unshift($digits, 1);
+            }
+        }
+        return $digits;
+    }
+}

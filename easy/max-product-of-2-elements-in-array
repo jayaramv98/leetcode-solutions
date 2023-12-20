@@ -1,0 +1,28 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @return Integer
+     */
+    function maxProduct($nums) {
+        $cnt = count($nums);
+        $max = 0;
+        $max_index = 0;
+        $second_max = 0;
+        for ($i = 0; $i < $cnt; $i++) {
+            if ($nums[$i] > $max) {
+                $max = $nums[$i];
+                $max_index = $i;
+            }
+        }
+
+        for ($j = 0; $j < $cnt; $j++) {
+            if ($nums[$j] <= $max && $j != $max_index && $nums[$j] > $second_max) {
+                $second_max = $nums[$j];
+            }
+        }
+
+       //   return [$max, $second_max];
+       return ($max - 1) * ($second_max - 1);
+    }
+}

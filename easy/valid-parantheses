@@ -1,0 +1,34 @@
+class Solution {
+
+    /**
+     * @param String $s
+     * @return Boolean
+     */
+    function isValid($s) {
+        $len = strlen($s);
+        if ($len == 1) {
+            return false;
+        }
+        $temp = [];
+        for($i = 0; $i < $len; $i++) {
+            if ($s[$i] == '{' || $s[$i] == '(' || $s[$i] == '[') {
+                array_push($temp, $s[$i]);
+            } else {
+                if (($s[$i] == '}' && array_pop($temp) != '{')
+                    ||
+                    ($s[$i] == ']' && array_pop($temp) != '[')
+                    ||
+                    ($s[$i] == ')' && array_pop($temp) != '(')
+                ) {
+                    return false;
+                }
+            }
+        }
+        if (count($temp) > 0) {
+            return false;
+        } else {
+            return true;
+        }
+       
+    }
+}

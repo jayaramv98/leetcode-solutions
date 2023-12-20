@@ -1,0 +1,29 @@
+class Solution {
+
+    /**
+     * @param String $s
+     * @return Integer
+     */
+    function lengthOfLongestSubstring($s) {
+        $str_len = strlen($s);
+        $hash_arr = [];
+        $max_length = 0;
+        $len = 0;
+
+        for ($i = 0; $i < $str_len; $i++) {
+             if (isset($hash_arr[$s[$i]])) {
+                 $max_length = max($max_length, $len);
+                 $len = $i - $hash_arr[$s[$i]];
+                 foreach($hash_arr as $key => $value) {
+                     if($value < $hash_arr[$s[$i]]){
+                         unset($hash_arr[$key]);
+                     }
+                 }
+             } else {
+                 $len++;
+             }
+            $hash_arr[$s[$i]] = $i;
+        }
+        return max($max_length, $len);
+    }
+}

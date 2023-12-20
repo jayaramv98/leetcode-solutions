@@ -1,0 +1,13 @@
+class Solution {
+
+    function twoSum($nums, $target) {
+        $hash_arr = [];
+        $len = count($nums);
+        for($i = 0; $i < $len ; $i++) {
+            if (isset($hash_arr[$nums[$i]])) {
+                return [$i, $hash_arr[$nums[$i]]];
+            }
+            $hash_arr[($target - $nums[$i])] = $i;
+        }
+    }
+}

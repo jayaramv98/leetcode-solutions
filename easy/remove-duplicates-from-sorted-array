@@ -1,0 +1,24 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @return Integer
+     */
+    function removeDuplicates(&$nums) {
+        $count_arr = [];
+        for ($i = 0; $i < count($nums); $i++) {
+            if (isset($count_arr[$nums[$i]])) {
+                $count_arr[$nums[$i]]++;
+            } else {
+                $count_arr[$nums[$i]] = 1;
+            }
+        }
+        $nums = [];
+        $result = 0;
+        foreach ($count_arr as $key=>$value) {
+            $nums[] = $key;
+            $result++;
+        }
+        return $result;
+    }
+}
