@@ -1,0 +1,35 @@
+class Solution(object):
+    def searchMatrix(self, matrix, target):
+        lenM = len(matrix)
+        lenN = len(matrix[0])
+
+        low = 0
+        high = lenM - 1
+        ssi = None
+
+        while low <= high:
+            mid = (low + high) // 2
+            if matrix[mid][0] < target and matrix[mid][lenN-1] > target:
+                ssi = mid
+                break
+            elif matrix[mid][0] == target or matrix[mid][lenN-1] == target:
+                return True
+            elif matrix[mid][0] > target:
+                high = mid - 1
+            elif matrix[mid][lenN-1] < target:
+                low = mid + 1
+
+        if ssi is not None:
+            low = 0
+            high = lenN - 1
+            while low <= high:
+                mid = (low + high) // 2
+                if matrix[ssi][mid] == target:
+                    return True
+                elif matrix[ssi][mid] > target:
+                    high = mid - 1
+                elif matrix[ssi][mid] < target:
+                    low = mid + 1
+
+        return False
+        

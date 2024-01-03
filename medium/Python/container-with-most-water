@@ -1,0 +1,18 @@
+class Solution(object):
+    def maxArea(self, height):
+        res = 0
+        lp, rp = 0, len(height)-1
+
+        while lp < rp:
+            if height[lp] >= height[rp]:
+                tempVal = (height[rp] * (rp-lp))
+                if tempVal > res:
+                    res = tempVal
+                rp -= 1
+            if height[rp] > height[lp]:
+                tempVal = (height[lp] * (rp-lp))
+                if tempVal > res:
+                    res = tempVal
+                lp += 1
+        return res
+        

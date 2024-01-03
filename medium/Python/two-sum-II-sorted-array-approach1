@@ -1,0 +1,9 @@
+class Solution(object):
+    def twoSum(self, nums, target):
+        hashList = dict()
+        arrLen = len(nums)
+        for i in range(arrLen):
+            if str(nums[i]) in hashList:
+                return [i, hashList[str(nums[i])]]
+            else:
+                hashList[str(target - nums[i])] = i

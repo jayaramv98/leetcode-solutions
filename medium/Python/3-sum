@@ -1,0 +1,25 @@
+class Solution(object):
+    def threeSum(self, nums):
+        nums = sorted(nums)
+        lenNums = len(nums)
+        res = []
+
+        for i, v in enumerate(nums):
+            if i > 0 and v == nums[i - 1]:
+                continue
+            
+            lp, rp = i+1, lenNums-1
+            while lp < rp:
+                threeSum = v + nums[lp] + nums[rp]
+                if threeSum < 0:
+                    lp += 1
+                elif threeSum > 0:
+                    rp -= 1
+                else:
+                    res.append([v, nums[lp], nums[rp]])
+                    lp += 1
+                    while nums[lp] == nums[lp-1] and lp < rp:
+                        lp += 1
+
+        return res
+        

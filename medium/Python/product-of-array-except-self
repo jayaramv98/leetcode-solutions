@@ -1,0 +1,15 @@
+class Solution(object):
+    def productExceptSelf(self, nums):
+        lenNums = len(nums)
+        prefix = postfix = 1
+        res = [1] * lenNums
+
+        for i in range(lenNums):
+            res[i] = prefix
+            prefix *= nums[i]
+
+        for i in range((lenNums - 1), -1, -1):
+            res[i] *= postfix
+            postfix *= nums[i]
+         
+        return res

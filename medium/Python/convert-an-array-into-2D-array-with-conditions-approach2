@@ -1,0 +1,14 @@
+from ast import List
+
+
+class Solution:
+    def findMatrix(self, nums: List[int]) -> List[List[int]]:
+        dict1 = {}
+        res = []
+
+        for i in nums:
+            dict1[i] = dict1.get(i, 0) + 1
+            if len(res) < dict1[i]:
+                res.append([])
+            res[dict1[i] - 1].append(i)
+        return res

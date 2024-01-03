@@ -1,0 +1,5 @@
+class Solution(object):
+    def sortPeople(self, names, heights):
+        n = len(names)
+        sortedIndexes = sorted([i for i in range(0, n)], key=lambda index: heights[index], reverse=True)
+        return [names[index] for index in sortedIndexes]

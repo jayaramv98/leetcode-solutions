@@ -1,0 +1,25 @@
+class Solution(object):
+    def isValidSudoku(self, board):
+        rowSet = [set() for _ in range(9)]
+        colSet = [set() for _ in range(9)]
+        gridSet = [
+            [set() for _ in range(3)],
+            [set() for _ in range(3)],
+            [set() for _ in range(3)]
+            ]
+
+        for i in range(0,9):
+            for j in range(0,9):
+                gridI = int(i/3)
+                gridJ = int(j/3)
+                if (board[i][j] in rowSet[i]) or \
+                (board[i][j] in colSet[j]) or \
+                (board[i][j] in gridSet[gridI][gridJ]):
+                    return False
+                else:
+                    if board[i][j] != ".":
+                        rowSet[i].add(board[i][j])
+                        colSet[j].add(board[i][j])
+                        gridSet[gridI][gridJ].add(board[i][j])
+        return True
+        

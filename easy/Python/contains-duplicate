@@ -1,0 +1,17 @@
+class Solution(object):
+    def containsDuplicate(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        len1 = len(nums)
+        tempDict = dict()
+        
+        for i in range(len1):
+            if tempDict.get(str(nums[i])):
+                return True
+            else:
+                tempDict[str(nums[i])] = "0"
+
+        return False
+        

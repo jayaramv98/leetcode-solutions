@@ -1,0 +1,27 @@
+from ast import List
+import math
+
+class Solution:
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+        
+        maxK = max(piles)
+        lp = 1
+        rp = maxK
+
+        res = rp
+
+        while lp <= rp:
+            
+            mid = (lp + rp) // 2
+            totHrs = 0
+            
+            for pile in piles:
+                totHrs += math.ceil(pile / mid)
+            
+            if totHrs <= h:
+                res = min(res, mid)
+                rp = mid - 1
+            else:
+                lp = mid + 1
+                
+        return res

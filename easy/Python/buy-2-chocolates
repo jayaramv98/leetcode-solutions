@@ -1,0 +1,7 @@
+class Solution(object):
+    def buyChoco(self, prices, money):
+        minSpend = money - sum(sorted(prices)[:2])
+        if minSpend >= 0:
+            return minSpend
+
+        return money

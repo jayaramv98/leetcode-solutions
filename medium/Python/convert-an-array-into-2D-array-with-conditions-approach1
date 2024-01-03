@@ -1,0 +1,25 @@
+class Solution(object):
+    def findMatrix(self, nums):
+        res = []
+
+        temp = []
+
+        for num in nums:
+            insertedFlag = 0
+            if num not in temp:
+                temp.append(num)
+                insertedFlag = 1
+            else:
+                for arr in res:
+                    if num not in arr:
+                        arr.append(num)
+                        insertedFlag = 1
+                        break
+            if insertedFlag == 0:
+                res.append(temp)
+                temp = [num]
+
+        if len(temp) > 0:
+            res.append(temp)
+        return res
+        

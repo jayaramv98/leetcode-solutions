@@ -1,0 +1,12 @@
+class Solution(object):
+    def twoSum(self, numbers, target):
+        numLen = len(numbers)
+        lp, rp = 0, numLen - 1
+        while lp != rp:
+            if numbers[lp] + numbers[rp] > target:
+                rp -= 1
+            if numbers[lp] + numbers[rp] < target:
+                lp += 1
+            if numbers[lp] + numbers[rp] == target:
+                return [lp+1, rp+1]
+        

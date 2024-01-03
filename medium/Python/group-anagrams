@@ -1,0 +1,14 @@
+from collections import defaultdict
+
+class Solution(object):
+    def groupAnagrams(self, strs):
+        dst = defaultdict(list)
+
+        for s in strs:
+            tempArrHash = [0] * 26
+            for l in s:
+                tempArrHash[ord(l) - ord('a')] += 1
+    
+            dst[tuple(tempArrHash)].append(s)
+         
+        return dst.values() 

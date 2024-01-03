@@ -1,0 +1,22 @@
+class Solution(object):
+    def evalRPN(self, tokens):
+        lenT = len(tokens)
+        popT = {'*': '*','/': '/','-': '-','+': '+'}
+        stack = []
+
+        for i in range(lenT):
+            if tokens[i] in popT.keys():
+                if tokens[i] == "+":
+                    val = int(float(stack[-2]) + float(stack[-1]))
+                elif tokens[i] == "-":
+                    val = int(float(stack[-2]) - float(stack[-1]))
+                elif tokens[i] == "*":
+                    val = int(float(stack[-2]) * float(stack[-1]))
+                elif tokens[i] == "/":
+                    val = int(float(stack[-2]) / float(stack[-1]))
+                stack.pop()
+                stack.pop()
+                stack.append(val)
+            else:
+                stack.append(tokens[i])
+        return int(stack[-1])
