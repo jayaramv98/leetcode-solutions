@@ -1,0 +1,21 @@
+from ast import List
+import math
+
+class Solution:
+    def minOperations(self, nums: List[int]) -> int:
+        d = {}
+
+        for num in nums:
+            if num in d:
+                d[num] += 1
+            else:
+                d[num] = 1
+
+        ops = 0
+
+        for k in d:
+            if d[k] < 2:
+                return -1
+            ops += math.ceil(d[k] / 3)
+        
+        return int(ops)
